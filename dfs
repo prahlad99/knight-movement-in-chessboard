@@ -1,0 +1,134 @@
+*****************dfs approach**************************
+#include<bits/stdc++.h>
+using namespace std;
+
+ // } Driver Code Ends
+
+class Solution 
+{
+    public:
+    void dfs(int u,int v,int i,int j,int N,int &res){
+        if(u==i&&j==v){
+            
+        // vis[u][v]=true;
+        return ;}
+        // vis[u][v]=true;
+        res=res+1;
+        if(u+1<=N&&v-2>0)
+	    dfs(u+1,v-2,i,j,N,res);
+	    
+	    if(u-2>0&&v+1<=N)
+	    dfs(u-2,v+1,i,j,N,res);
+	   
+	    if(u+1<=N&&v+2<=N)
+	    dfs(u+1,v+2,i,j,N,res);
+	    
+	 if(u-1>0&&v+2<=N)
+	    dfs(u-1,v+2,i,j,N,res);
+	   
+	  if(u-1>0&&v-2>0)
+	    dfs(u-1,v-2,i,j,N,res);
+	  
+	 if(u-2>0&&v-1>0)
+	    dfs(u-2,v-1,i,j,N,res);
+	    
+	   if(u+2<=N&&v+1<=N)
+	    dfs(u+2,v+1,i,j,N,res);
+	  return ;
+	   if(u+2<=N&&v-1>0)
+	    dfs(u+2,v-1,i,j,N,res);
+	    return ;
+        
+    }
+    //Function to find out minimum steps Knight needs to reach target position.
+	int minStepToReachTarget(vector<int>&KnightPos,vector<int>&TargetPos,int N)
+	{
+	    // Code here
+	   // bool vis[300][300];
+	    
+	   // for(int i=1;i<=N;i++)
+	   // for(int j=1;j<=N;j++)
+	   ////  vis[i][j]=false;
+	    int ans=0;
+	    int res=0;
+	    int u=KnightPos[0];
+	    int v=KnightPos[1];
+	    int i=TargetPos[0];
+	    int j=TargetPos[1];
+	    if(u+1<=N&&v-2>0){
+	    dfs(u+1,v-2,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u-2>0&&v+1<=N){
+	    dfs(u-2,v+1,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u+1<=N&&v+2<=N){
+	    dfs(u+1,v+2,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u-1>0&&v+2<=N){
+	    dfs(u-1,v+2,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u-1>0&&v-2>0){
+	    dfs(u-1,v-2,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u+2<=N&&v-1>0){
+	    dfs(u+2,v-1,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u-2>0&&v-1>0){
+	    dfs(u-2,v-1,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    res=0;
+	   // vis[i][j]=false;
+	     if(u+2<=N&&v+1<=N){
+	    dfs(u+2,v+1,i,j,N,res);
+	   // if(vis[i][j]==true)
+	    ans=min(ans,res);
+	    }
+	    
+	    
+	    return res;
+	}
+};
+
+
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		vector<int>KnightPos(2);
+		vector<int>TargetPos(2);
+		int N;
+		cin >> N;
+		cin >> KnightPos[0] >> KnightPos[1];
+		cin >> TargetPos[0] >> TargetPos[1];
+		Solution obj;
+		int ans = obj.minStepToReachTarget(KnightPos, TargetPos, N);
+		cout << ans <<"\n";
+	}
+	return 0;
+}  
